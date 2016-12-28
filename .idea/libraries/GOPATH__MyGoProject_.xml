@@ -3,15 +3,15 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../.." />
       <root url="file://$PROJECT_DIR$/../../../golang.org" />
-      <root url="file://$PROJECT_DIR$/../../../bitbucket.org" />
       <root url="file://$PROJECT_DIR$/../../../ghe.ca-tools.org" />
+      <root url="file://$PROJECT_DIR$/../../../bitbucket.org" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="file://$PROJECT_DIR$/../.." />
       <root url="file://$PROJECT_DIR$/../../../golang.org" />
-      <root url="file://$PROJECT_DIR$/../../../bitbucket.org" />
       <root url="file://$PROJECT_DIR$/../../../ghe.ca-tools.org" />
+      <root url="file://$PROJECT_DIR$/../../../bitbucket.org" />
     </SOURCES>
     <excluded>
       <root url="file://$PROJECT_DIR$" />
