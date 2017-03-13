@@ -7,11 +7,12 @@ import (
 	"io/ioutil"
 	"time"
 	"io"
+	"strings"
 )
 
 func main() {
 
-	// Ch01_Sec1.5 - URLからの取得.
+	// Ch01_Sec1.6 - URLからの取得.
 
 	// 1つを取得.
 	load()
@@ -23,12 +24,19 @@ func main() {
 
 func load_parallel()  {
 
+	// 対象のURL
 	urls := []string{
 		"http://www.yoheim.net/image/300.jpg",
 		"http://www.yoheim.net/image/301.jpg",
 		"http://www.yoheim.net/image/302.jpg",
 		"http://www.yoheim.net/image/303.jpg",
 		"http://www.yoheim.net/image/304.jpg"}
+
+	// ディレクトリの準備
+	if err := os.Mkdir("img", 0777); err != nil && !os.IsExist(err) {
+		fmt.Println(err)
+		return
+	}
 
 	start := time.Now()
 
@@ -57,7 +65,17 @@ func fetch(url string, ch chan<- string)  {
 		return
 	}
 
-	nbytes, err := io.Copy(ioutil.Discard, resp.Body)
+	frags := strings.Split(url, "/")
+	savePath := "img/" + frags[len(frags) - 1]
+	f, err := os.Create(savePath)
+	if err != nil {
+		ch <- fmt.Sprintf("while reading %s: %v", url, err)
+		return
+	}
+	defer f.Close()
+
+	//nbytes, err := io.Copy(ioutil.Discard, resp.Body)
+	nbytes, err := io.Copy(f, resp.Body)
 	resp.Body.Close()
 	if err != nil {
 		ch <- fmt.Sprintf("while reading %s: %v", url, err)
