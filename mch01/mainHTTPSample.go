@@ -5,7 +5,6 @@ import (
 	"fmt"
 )
 
-// http://qiita.com/taizo/items/bf1ec35a65ad5f608d45
 // https://golang.org/pkg/net/http/
 
 type String string
@@ -67,17 +66,13 @@ func handleParams(w http.ResponseWriter, r *http.Request) {
 	// クエリパラメータ取得してみる
 	fmt.Fprintf(w, "クエリ：%s\n", r.URL.RawQuery)
 
-	// ボディを受け取ってみる
-	//if r.Method == http.MethodPost {
+	r.ParseForm()
+	form := r.PostForm
+	fmt.Fprintf(w, "フォーム：\n%v\n", form)
 
-		r.ParseForm()
-		form := r.PostForm
-		fmt.Fprintf(w, "フォーム：\n%v\n", form)
-
-		// または、クエリパラメータも含めて全部.
-		params := r.Form
-		fmt.Fprintf(w, "フォーム2：\n%v\n", params)
-	//}
+	// または、クエリパラメータも含めて全部.
+	params := r.Form
+	fmt.Fprintf(w, "フォーム2：\n%v\n", params)
 }
 
 func handleBasicAuth(w http.ResponseWriter, r *http.Request) {
