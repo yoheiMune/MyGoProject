@@ -25,6 +25,8 @@ func TestSqure( t *testing.T) {
 		}
 	}
 }
+// $ go test
+
 
 // ベンチマーク.
 func BenchmarkSquare(b *testing.B) {
@@ -32,6 +34,8 @@ func BenchmarkSquare(b *testing.B) {
 		Square(10)
 	}
 }
+// $ go test -bench .
+// $ go test -bench . -benchmem    # メモリ使用量やalloc回数も取得.
 
 // Example系.
 func ExampleSquare() {
@@ -39,7 +43,7 @@ func ExampleSquare() {
 	fmt.Println(v)
 	// Output: 121
 }
-
+// $ go test
 
 
 
