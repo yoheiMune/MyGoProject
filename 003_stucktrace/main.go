@@ -31,7 +31,7 @@ func b() {
 }
 
 func c() {
-	i := 1
+	i := 0
 	for {
 		pt, file, line, ok := runtime.Caller(i)
 		if !ok {
