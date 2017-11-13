@@ -51,7 +51,8 @@ func main() {
 		FROM [bigquery-public-data:usa_names.usa_1910_2013]
 		WHERE name = "William"
 		GROUP BY year
-		ORDER BY year
+		ORDER BY year desc
+		LIMIT 3
 	`)
 	q.QueryConfig.UseLegacySQL = true
 	itr, err := q.Read(ctx)
